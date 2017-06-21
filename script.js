@@ -9,9 +9,11 @@
 
 	if (tasks && tasks.length > 0) {
 		for (var i = 0; i < tasks.length; i++) {
-			createToDo(tasks[i]);
-			createCheckBox(tasks[i]);
-			createRemoveButton();
+			var containerInfo = document.createElement('div');
+			containerResults.appendChild(containerInfo);
+			createToDo(tasks[i], containerInfo);
+			createCheckBox(tasks[i], containerInfo);
+			createRemoveButton(containerInfo);
 		}
 	}
 
@@ -38,30 +40,83 @@
 		};
 
 		saveToDoItem(task);
+		clearInput();
 
-		createCheckBox(task);
-		createToDo(task);
-		createRemoveButton();
+		var containerInfo = document.createElement('div');
+		containerResults.appendChild(containerInfo);
+
+		createCheckBox(task, containerInfo);
+		createToDo(task, containerInfo);
+		createRemoveButton(containerInfo);
 	}
 
-	function createCheckBox(task){
+	function clearInput(){
+		input.value  = '';
+	}
+
+	function createCheckBox(task, origin) {
 		var checkBox = document.createElement('input');
 		checkBox.type = 'checkbox';
 		checkBox.checked = task.done;
-		containerResults.appendChild(checkBox);
+		checkBox.addEventListener('click', addLineThrough);
+		origin.appendChild(checkBox);
 	}
 
-	function createRemoveButton() {
+	function createRemoveButton(origin) {
 		var buttonRemove = document.createElement('button');
 		buttonRemove.innerHTML = 'Remove';
-		containerResults.appendChild(buttonRemove);
+		buttonRemove.addEventListener('click', removeTask);
+		origin.appendChild(buttonRemove);
 	}
 
-	function createToDo(task) {
+	function createToDo(task, origin) {
 		var toDoElement = document.createElement('div');
 		var creationDateOfTask = task.creationDate.toLocaleString();
-		toDoElement.innerHTML = task.name + ' ' + creationDateOfTask ;
-		containerResults.appendChild(toDoElement);
+
+		toDoElement.innerHTML = task.name + ' ' + creationDateOfTask;
+		if (task.done) {
+			toDoElement.style.textDecoration = 'line-through';
+		}
+		origin.appendChild(toDoElement);
+	}
+
+	function addLineThrough() {
+		var toDoDiv = this.parentElement;
+		var filter = [].filter;
+		var toDoDescriptionElement = filter.call(toDoDiv.children, function (i) {
+			return i.nodeName === 'DIV';
+		})[0];
+		var description = toDoDescriptionElement.innerHTML;
+
+		var tasks = JSON.parse(localStorage.getItem('tasks'));
+
+		var newTasks = [];
+		for (var i = 0; i < tasks.length; i++) {
+			if ((tasks[i].name + ' ' + tasks[i].creationDate.toLocaleString()) == description) {
+				tasks[i].done = true;
+			}
+			newTasks.push(tasks[i]);
+		}
+		localStorage.setItem('tasks', JSON.stringify(newTasks));
+
+		toDoDescriptionElement.style.textDecoration = 'line-through';
+	}
+
+	function removeTask() {
+		var toDoDiv = this.parentElement;
+		var filter = [].filter;
+		var toDoDescriptionElement = filter.call(toDoDiv.children, function (i) {
+			return i.nodeName === 'DIV';
+		})[0];
+
+		var description = toDoDescriptionElement.innerHTML;
+		var tasks = JSON.parse(localStorage.getItem('tasks'));
+		var newTasks = tasks.filter(function (i) {
+			return ((i.name + ' ' + i.creationDate.toLocaleString()) != description)
+		});
+		localStorage.setItem('tasks', JSON.stringify(newTasks));
+
+		toDoDiv.parentElement.removeChild(toDoDiv);
 	}
 
 }());
