@@ -16,6 +16,7 @@
 			createCheckBox(tasks[i], containerInfo);
 			createToDo(tasks[i], containerInfo);
 			createRemoveButton(containerInfo);
+
 		}
 	}
 
