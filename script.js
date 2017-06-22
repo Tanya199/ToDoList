@@ -10,7 +10,7 @@
 	if (tasks && tasks.length > 0) {
 		for (var i = 0; i < tasks.length; i++) {
 			var containerInfo = document.createElement('div');
-			containerInfo.className = 'container_info'
+			containerInfo.className = 'container_info';
 			containerResults.appendChild(containerInfo);
 
 			createCheckBox(tasks[i], containerInfo);
