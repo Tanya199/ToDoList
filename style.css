@@ -1,0 +1,53 @@
+@import 'https://fonts.googleapis.com/css?family=Maven+Pro';
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    height: 100vh;
+}
+body{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    min-height: 100%;
+    background: #fff;
+}
+.wrapper{
+    width: 50%;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+.container_info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#input{
+    width: 90%;
+    height: 40px;
+}
+#btn_add{
+    width: 60px;
+    height: 40px;
+}
+#cont_result{
+    margin-top: 20px;
+    color: #0e0e0e;
+    font-size: 1.7em;
+    font-family: 'Maven Pro', 'ubuntu';
+    font-weight: 300;
+}
+.check_box {
+    /*position: relative;*/
+    /*top: 15px;*/
+}
+.wrapper_task{
+
+}
+.button_remove{
+
+}

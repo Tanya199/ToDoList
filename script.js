@@ -10,9 +10,11 @@
 	if (tasks && tasks.length > 0) {
 		for (var i = 0; i < tasks.length; i++) {
 			var containerInfo = document.createElement('div');
+			containerInfo.className = 'container_info'
 			containerResults.appendChild(containerInfo);
-			createToDo(tasks[i], containerInfo);
+
 			createCheckBox(tasks[i], containerInfo);
+			createToDo(tasks[i], containerInfo);
 			createRemoveButton(containerInfo);
 		}
 	}
@@ -35,14 +37,14 @@
 		}
 		var task = {
 			'name': input.value,
-			'creationDate': new Date(),
+			'creationDate': moment(),
 			'done': false
 		};
-
 		saveToDoItem(task);
 		clearInput();
 
 		var containerInfo = document.createElement('div');
+		containerInfo.className = 'container_info';
 		containerResults.appendChild(containerInfo);
 
 		createCheckBox(task, containerInfo);
@@ -50,13 +52,14 @@
 		createRemoveButton(containerInfo);
 	}
 
-	function clearInput(){
-		input.value  = '';
+	function clearInput() {
+		input.value = '';
 	}
 
 	function createCheckBox(task, origin) {
 		var checkBox = document.createElement('input');
 		checkBox.type = 'checkbox';
+		checkBox.className = 'check_box';
 		checkBox.checked = task.done;
 		checkBox.addEventListener('click', addLineThrough);
 		origin.appendChild(checkBox);
@@ -65,18 +68,28 @@
 	function createRemoveButton(origin) {
 		var buttonRemove = document.createElement('button');
 		buttonRemove.innerHTML = 'Remove';
+		buttonRemove.className = 'button_remove';
 		buttonRemove.addEventListener('click', removeTask);
 		origin.appendChild(buttonRemove);
 	}
 
 	function createToDo(task, origin) {
 		var toDoElement = document.createElement('div');
-		var creationDateOfTask = task.creationDate.toLocaleString();
+		var creationDateOfTask = moment(task.creationDate).format("MM-DD-YYYY HH:mm");
+		toDoElement.className = 'wrapper_task';
 
-		toDoElement.innerHTML = task.name + ' ' + creationDateOfTask;
+		var taskName = task.name;
+		if (taskName.length > 30) {
+			taskName = taskName.split('').splice(0, 30);
+			taskName = taskName.join('');
+		}
+
+		toDoElement.innerHTML = taskName + ' ' + creationDateOfTask;
+
 		if (task.done) {
 			toDoElement.style.textDecoration = 'line-through';
 		}
+
 		origin.appendChild(toDoElement);
 	}
 
