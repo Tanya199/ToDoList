@@ -1,10 +1,10 @@
-@import 'https://fonts.googleapis.com/css?family=Maven+Pro';
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 html {
+    font-family: Roboto,Helvetica,Arial,sans-serif;
     height: 100vh;
 }
 body{
@@ -14,8 +14,23 @@ body{
     min-height: 100%;
     background: #fff;
 }
+#input, #btn_add, .btn_remove, :active{
+    outline: none;
+}
+#input, #btn_add, .btn_remove, :active{
+    outline: none;
+}
 .wrapper{
     width: 50%;
+    background: ivory;
+    border: 1px solid #eeeeee;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+    -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);;
+    -o-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);;
+
 }
 .container{
     display: flex;
@@ -25,29 +40,46 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 50px;
+    border-bottom: 1px solid #efefef;
 }
 #input{
     width: 90%;
     height: 40px;
+    color: #646262;
+    font-size: 1.3em;
+    border-radius: 2px;
+    border: 1px solid #eeeeee;
 }
-#btn_add{
+#btn_add, .btn_remove{
     width: 60px;
     height: 40px;
+    cursor: pointer;
+    color: #ffffff;
+    border-radius: 2px;
+
+}
+#btn_add{
+    background: #4fccbf;
+    border: 1px solid #4fccbf;
+    box-shadow: 0px 1px 2px #646262;
 }
 #cont_result{
     margin-top: 20px;
     color: #0e0e0e;
     font-size: 1.7em;
-    font-family: 'Maven Pro', 'ubuntu';
     font-weight: 300;
 }
 .check_box {
-    /*position: relative;*/
-    /*top: 15px;*/
 }
 .wrapper_task{
+    margin: 0px 10px 0px 10px;
+    font-size: 0.8em;
+    color: #646262;
 
 }
-.button_remove{
-
+.btn_remove{
+    background: #ff8d9c;
+    border: 1px solid #ff8d9c;
+    box-shadow: 0px 1px 2px #646262
 }

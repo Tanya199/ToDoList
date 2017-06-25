@@ -69,7 +69,7 @@
 	function createRemoveButton(origin) {
 		var buttonRemove = document.createElement('button');
 		buttonRemove.innerHTML = 'Remove';
-		buttonRemove.className = 'button_remove';
+		buttonRemove.className = 'btn_remove';
 		buttonRemove.addEventListener('click', removeTask);
 		origin.appendChild(buttonRemove);
 	}
@@ -85,7 +85,7 @@
 			taskName = taskName.join('');
 		}
 
-		toDoElement.innerHTML = taskName + ' ' + creationDateOfTask;
+		toDoElement.innerHTML = taskName + ' ' + ' ' + ' ' + ' ' + creationDateOfTask;
 
 		if (task.done) {
 			toDoElement.style.textDecoration = 'line-through';
