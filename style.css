@@ -37,7 +37,7 @@ body{
 }
 .container_info{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     height: 50px;
     border-bottom: 1px solid #efefef;
@@ -52,13 +52,13 @@ body{
 }
 #btn_add, .btn_remove{
     width: 60px;
-    height: 40px;
     cursor: pointer;
     color: #ffffff;
     border-radius: 2px;
 
 }
 #btn_add{
+    height: 40px;
     background: #4fccbf;
     border: 1px solid #4fccbf;
     box-shadow: 0px 1px 2px #646262;
@@ -78,6 +78,7 @@ body{
 
 }
 .btn_remove{
+    height: 20px;
     background: #ff8d9c;
     border: 1px solid #ff8d9c;
     box-shadow: 0px 1px 2px #646262
