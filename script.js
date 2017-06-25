@@ -85,7 +85,7 @@
 			taskName = taskName.join('');
 		}
 
-		toDoElement.innerHTML = taskName + ' ' + ' ' + ' ' + ' ' + creationDateOfTask;
+		toDoElement.innerHTML = taskName + ' ' + creationDateOfTask;
 
 		if (task.done) {
 			toDoElement.style.textDecoration = 'line-through';
