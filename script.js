@@ -104,13 +104,13 @@
 
 		var tasks = JSON.parse(localStorage.getItem('tasks'));
 
-		var newTasks = [];
-		for (var i = 0; i < tasks.length; i++) {
-			if ((tasks[i].name + ' ' + moment(tasks[i].creationDate).format("MM-DD-YYYY HH:mm")) == description) {
-				tasks[i].done = true;
+		var newTasks = tasks.map(function (i) {
+			if ((i.name + ' ' + moment(i.creationDate).format("MM-DD-YYYY HH:mm")) == description) {
+				i.done = !i.done;
 			}
-			newTasks.push(tasks[i]);
-		}
+			return i;
+		});
+
 		localStorage.setItem('tasks', JSON.stringify(newTasks));
 
 		toDoDescriptionElement.style.textDecoration = 'line-through';
@@ -126,9 +126,10 @@
 		var description = toDoDescriptionElement.innerHTML;
 		var tasks = JSON.parse(localStorage.getItem('tasks'));
 		var newTasks = tasks.filter(function (i) {
-			return ((i.name + ' ' + (moment(i.creationDate).format("MM-DD-YYYY HH:mm"))) != description)
+			var date = moment(i.creationDate).format("MM-DD-YYYY HH:mm");
+			return ((i.name + ' ' + date) != description)
 		});
-		console.log(description, i.name + ' ' + i.creationDate, newTasks);
+
 		localStorage.setItem('tasks', JSON.stringify(newTasks));
 
 		toDoDiv.parentElement.removeChild(toDoDiv);
