@@ -106,7 +106,7 @@
 
 		var newTasks = [];
 		for (var i = 0; i < tasks.length; i++) {
-			if ((tasks[i].name + ' ' + tasks[i].creationDate.toLocaleString()) == description) {
+			if ((tasks[i].name + ' ' + moment(tasks[i].creationDate).format("MM-DD-YYYY HH:mm")) == description) {
 				tasks[i].done = true;
 			}
 			newTasks.push(tasks[i]);
@@ -126,8 +126,9 @@
 		var description = toDoDescriptionElement.innerHTML;
 		var tasks = JSON.parse(localStorage.getItem('tasks'));
 		var newTasks = tasks.filter(function (i) {
-			return ((i.name + ' ' + i.creationDate.toLocaleString()) != description)
+			return ((i.name + ' ' + (moment(i.creationDate).format("MM-DD-YYYY HH:mm"))) != description)
 		});
+		console.log(description, i.name + ' ' + i.creationDate, newTasks);
 		localStorage.setItem('tasks', JSON.stringify(newTasks));
 
 		toDoDiv.parentElement.removeChild(toDoDiv);
